@@ -2,7 +2,7 @@
   "name": "gatsby-shopify-starter",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby & Shopify.",
-  "version": "1.00",
+  "version": "0.1.0",
   "author": "Jack Collins",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
