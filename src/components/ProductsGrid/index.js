@@ -3,7 +3,6 @@ import { ProductsGridWrapper } from './styles';
 import { ProductTile } from '../ProductTile';
 
 export function ProductsGrid({ products }) {
-  console.log(products);
   return (
     <ProductsGridWrapper>
       {products.map(product => (

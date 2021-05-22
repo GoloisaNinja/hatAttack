@@ -19,6 +19,7 @@ export default function AllProducts() {
   const qs = queryString.parse(search);
   const selectedCollectionIds = qs.c?.split(',').filter(c => !!c) || [];
   const selectedCollectionIdsMap = {};
+  const searchTerm = qs.s;
 
   selectedCollectionIds.forEach(collectionId => {
     selectedCollectionIdsMap[collectionId] = true;
@@ -34,7 +35,12 @@ export default function AllProducts() {
     });
   }
 
-  console.log(collectionProductMap);
+  const filterBySearchTerm = product => {
+    if (searchTerm) {
+      return product.title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
+    }
+    return true;
+  };
 
   const filterByCategory = product => {
     if (Object.keys(selectedCollectionIdsMap).length) {
@@ -47,15 +53,47 @@ export default function AllProducts() {
     }
     return true;
   };
-  const filteredProducts = products.filter(filterByCategory);
+  const filteredProducts = products
+    .filter(filterByCategory)
+    .filter(filterBySearchTerm);
   return (
     <Layout>
-      <h4>{filteredProducts.length} products</h4>
+      {!!searchTerm && !!filteredProducts.length && (
+        <h3>
+          Search term: <strong>'{searchTerm}'</strong>
+        </h3>
+      )}
+      {!!filteredProducts.length && <h4>{filteredProducts.length} products</h4>}
+
       <Content>
         <Filters />
-        <div>
-          <ProductsGrid products={filteredProducts} />
-        </div>
+        {!filteredProducts.length && (
+          <div>
+            <h3>
+              <span>Heckin Bamboozled! No matches for</span>
+              &nbsp;
+              <strong>'{searchTerm}'</strong>
+            </h3>
+            <div>
+              Here are some tips:
+              <br />
+              <br />
+              <br />
+              <ul>
+                <li>Don't be weird</li>
+                <li>Search for real things</li>
+                <li>We don't sell Graphics Cards</li>
+                <li>Unplug the search bar and reboot</li>
+                <li>Check your spelling</li>
+              </ul>
+            </div>
+          </div>
+        )}
+        {!!filteredProducts.length && (
+          <div>
+            <ProductsGrid products={filteredProducts} />
+          </div>
+        )}
       </Content>
     </Layout>
   );
