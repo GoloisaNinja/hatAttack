@@ -8,12 +8,16 @@ export function Header() {
   return (
     <HeaderWrapper>
       <div>
-        <Link to="/">
-          <Logo />
-        </Link>
+        <div>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        <Cart />
       </div>
-      <Search />
-      <Cart />
+      <div>
+        <Search />
+      </div>
     </HeaderWrapper>
   );
 }
