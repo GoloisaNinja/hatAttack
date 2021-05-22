@@ -5,8 +5,8 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `Gatsby Shopify Starter`,
-    description: `Gatsby & Shopify Starter for the WebDevEducation course.`,
-    author: `@tomphill`,
+    description: `Gatsby & Shopify Starter as intro to shopify API.`,
+    author: `@goloisaninja`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -51,7 +51,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/attack-icon.png`,
       },
     },
   ],
