@@ -15,15 +15,14 @@ export function CartContents() {
   return (
     <section>
       <h1>Your cart</h1>
-      {!!checkout?.lineItems ||
-        (checkout?.paymentDue === '0.00' && (
-          <CartHeader>
-            <div>Product</div>
-            <div>Unit price</div>
-            <div>Quantity</div>
-            <div>Amount</div>
-          </CartHeader>
-        ))}
+      {!!checkout?.lineItems && checkout?.paymentDue !== '0.00' && (
+        <CartHeader>
+          <div>Product</div>
+          <div>Unit price</div>
+          <div>Quantity</div>
+          <div>Amount</div>
+        </CartHeader>
+      )}
 
       {checkout?.lineItems?.map(lineItem => (
         <CartItem key={lineItem.variant.id}>
@@ -45,17 +44,16 @@ export function CartContents() {
           </div>
         </CartItem>
       ))}
-      {!!checkout?.lineItems ||
-        (checkout?.paymentDue === '0.00' && (
-          <CartFooter>
-            <div>
-              <strong>Total: </strong>
-            </div>
-            <div>
-              <span>${checkout?.totalPrice}</span>
-            </div>
-          </CartFooter>
-        ))}
+      {!!checkout?.lineItems && checkout?.paymentDue !== '0.00' && (
+        <CartFooter>
+          <div>
+            <strong>Total: </strong>
+          </div>
+          <div>
+            <span>${checkout?.totalPrice}</span>
+          </div>
+        </CartFooter>
+      )}
       {!checkout?.lineItems ||
         (checkout?.paymentDue === '0.00' && (
           <h4>Your cart is such empties...</h4>
@@ -65,12 +63,11 @@ export function CartContents() {
           <Button onClick={() => navigate(-1)}>Continue Shopping</Button>
         </div>
         <div>
-          {!!checkout?.webUrl ||
-            (checkout?.paymentDue === '0.00' && (
-              <Button onClick={() => (window.location.href = checkout.webUrl)}>
-                Checkout
-              </Button>
-            ))}
+          {!!checkout?.webUrl && checkout?.paymentDue !== '0.00' && (
+            <Button onClick={() => (window.location.href = checkout.webUrl)}>
+              Checkout
+            </Button>
+          )}
         </div>
       </Footer>
     </section>
