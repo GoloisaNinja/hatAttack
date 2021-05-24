@@ -54,10 +54,9 @@ export function CartContents() {
           </div>
         </CartFooter>
       )}
-      {!checkout?.lineItems ||
-        (checkout?.paymentDue === '0.00' && (
-          <h4>Your cart is such empties...</h4>
-        ))}
+      {(!checkout?.lineItems || checkout?.paymentDue === '0.00') && (
+        <h4>wow cart has such empties...</h4>
+      )}
       <Footer>
         <div>
           <Button onClick={() => navigate(-1)}>Continue Shopping</Button>
