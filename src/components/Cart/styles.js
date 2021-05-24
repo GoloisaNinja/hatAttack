@@ -11,6 +11,20 @@ export const CartWrapper = styled(StyledLink).attrs(() => ({
   &:hover {
     text-decoration: underline;
   }
+  > div:nth-child(2) {
+    padding: 5px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    background: black;
+    color: white;
+    border-radius: 50%;
+    margin-left: 5px;
+    @media (min-width: 651px) {
+      display: none;
+    }
+  }
   > div:last-child {
     padding-left: 8px;
     margin: auto 0;

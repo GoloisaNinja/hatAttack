@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
-import { Layout, ImageGallery, ProductQuantityAdder, Button } from 'components';
+import {
+  Layout,
+  ImageGallery,
+  ProductQuantityAdder,
+  Button,
+  Modal,
+} from 'components';
 import { Grid, SelectWrapper, Price } from './styles';
 import CartContext from '../../context/CartContext';
 import { navigate, useLocation } from '@reach/router';
@@ -17,6 +23,8 @@ export const query = graphql`
 export default function ProductTemplate({ data }) {
   const { getProductById } = useContext(CartContext);
   const [product, setProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({});
   const [selectedVariant, setSelectedVariant] = useState(null);
   const { search, origin, pathname } = useLocation();
 
@@ -31,6 +39,23 @@ export default function ProductTemplate({ data }) {
       `${origin}${pathname}?variant=${encodeURIComponent(newVariant.id)}`,
       { replace: true }
     );
+  };
+  const handleModal = ({ variantId, quantity }) => {
+    const addedVariant = product?.variants.find(
+      variant => variant.id === variantId
+    );
+    const content = {
+      product: data.shopifyProduct.title,
+      addedVariant: addedVariant.title,
+      quantity,
+    };
+    console.log(content);
+    setModalContent(content);
+    setShowModal(true);
+  };
+
+  const handleDismiss = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -84,6 +109,7 @@ export default function ProductTemplate({ data }) {
                   <ProductQuantityAdder
                     available={selectedVariant.available}
                     variantId={selectedVariant.id}
+                    handleModal={handleModal}
                   />
                 </>
               )}
@@ -97,6 +123,7 @@ export default function ProductTemplate({ data }) {
           />
         </div>
       </Grid>
+      {showModal && <Modal dismiss={handleDismiss} content={modalContent} />}
     </Layout>
   );
 }

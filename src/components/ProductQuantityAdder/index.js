@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Input } from '../Input';
 import CartContext from '../../context/CartContext';
 
-export function ProductQuantityAdder({ variantId, available }) {
+export function ProductQuantityAdder({ variantId, available, handleModal }) {
   const [quantity, setQuantity] = useState(1);
   const { updateLineItem } = useContext(CartContext);
 
@@ -15,6 +15,7 @@ export function ProductQuantityAdder({ variantId, available }) {
   const handleSubmit = e => {
     e.preventDefault();
     updateLineItem({ variantId, quantity: parseInt(quantity, 10) });
+    handleModal({ variantId, quantity: parseInt(quantity, 10) });
   };
 
   return (

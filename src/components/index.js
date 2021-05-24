@@ -17,4 +17,7 @@ export * from './ProductTile';
 export * from './Filters';
 export * from './Checkbox';
 export * from './Logo';
+export * from './InverseLogo';
 export * from './Search';
+export * from './Footer';
+export * from './Modal';
