@@ -11,6 +11,7 @@ const IndexPage = () => {
   const { collections } = useContext(ProductContext);
   return (
     <Layout>
+      <SEO description={'Wear Hat Attack hats'} title={'Hat Attack Homepage'} />
       <HomePageCollectionsGrid
         collections={collections.filter(
           collection => collection.title !== 'Featured Hats'

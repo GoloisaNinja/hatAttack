@@ -6,6 +6,7 @@ import {
   ProductQuantityAdder,
   Button,
   Modal,
+  SEO,
 } from 'components';
 import { Grid, SelectWrapper, Price } from './styles';
 import CartContext from '../../context/CartContext';
@@ -81,6 +82,10 @@ export default function ProductTemplate({ data }) {
   ]);
   return (
     <Layout>
+      <SEO
+        description={data.shopifyProduct.description}
+        title={data.shopifyProduct.title}
+      />
       <Button onClick={() => navigate(-1)}>Back to Products</Button>
       <Grid>
         <div>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Layout, Filters, ProductsGrid } from 'components';
+import { Layout, Filters, ProductsGrid, SEO } from 'components';
 import ProductContext from '../context/ProductContext';
 import styled from 'styled-components';
 import queryString from 'query-string';
@@ -58,6 +58,10 @@ export default function AllProducts() {
     .filter(filterBySearchTerm);
   return (
     <Layout>
+      <SEO
+        description={'Browse all of Hat Attack'}
+        title={'Hat Attack Products'}
+      />
       {!!searchTerm && !!filteredProducts.length && (
         <h3>
           Search term: <strong>'{searchTerm}'</strong>

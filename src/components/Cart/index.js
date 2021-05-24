@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartWrapper } from './styles';
 import { FaShoppingCart } from 'react-icons/fa';
 import CartContext from '../../context/CartContext';
+import { SEO } from '../SEO';
 
 export function Cart() {
   const { checkout } = useContext(CartContext);
@@ -11,6 +12,7 @@ export function Cart() {
   }
   return (
     <CartWrapper>
+      <SEO description={'Checkout at Hat Attack'} title={'Hat Attack Cart'} />
       <FaShoppingCart size="1.5em" />
       <div>{totalQuanity}</div>
       <div>

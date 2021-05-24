@@ -38,3 +38,12 @@ export const CartFooter = styled.div`
     }
   }
 `;
+
+export const Footer = styled.footer`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+  > div:last-child {
+    text-align: right;
+  }
+`;
